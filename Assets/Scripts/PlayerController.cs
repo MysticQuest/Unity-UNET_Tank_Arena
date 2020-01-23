@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Networking;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerHealth))]
@@ -7,7 +8,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerSetup))]
 [RequireComponent(typeof(PlayerShoot))]
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : NetworkBehaviour
 {
 
     PlayerShoot m_pShoot;
@@ -34,12 +35,22 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+
         Vector3 inputDirection = GetInput();
         m_pMotor.MovePlayer(inputDirection);
     }
 
     void Update()
     {
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+
         Vector3 inputDirection = GetInput();
         if (inputDirection.sqrMagnitude > 0.25f)  //sqrMag is to compare V3 to float
         {
