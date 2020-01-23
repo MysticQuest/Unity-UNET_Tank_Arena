@@ -45,5 +45,8 @@ public class PlayerController : MonoBehaviour
         {
             m_pMotor.RotateChassis(inputDirection);
         }
+
+        Vector3 turretDir = Utility.GetWorldPointScreen(Input.mousePosition, m_pMotor.m_turret.position.y) - m_pMotor.m_turret.position;
+        m_pMotor.RotateTurret(turretDir);
     }
 }
