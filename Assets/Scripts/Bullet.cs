@@ -14,10 +14,12 @@ public class Bullet : NetworkBehaviour
 
     public ParticleSystem m_explosionFX;
     public List<string> m_bounceTags;
+    public List<string> m_collisionTags;
 
     public int m_speed = 100;
     public float m_lifetime = 3f;
     public int m_bounces = 3;
+    public float m_damage = 1f;
 
     // Use this for initialization
     void Start()
@@ -44,6 +46,8 @@ public class Bullet : NetworkBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        CheckCollisions(collision);
+
         if (m_bounceTags.Contains(collision.gameObject.tag))
         {
             if (m_bounces <= 0)
@@ -51,6 +55,23 @@ public class Bullet : NetworkBehaviour
                 Explode();
             }
             m_bounces--;
+        }
+    }
+
+    void CheckCollisions(Collision collision)
+    {
+        Debug.Log("Checking");
+        if (m_collisionTags.Contains(collision.collider.tag))
+        {
+            Debug.Log("Collided with Player");
+            Explode();
+
+            PlayerHealth playerHealth = collision.gameObject.GetComponentInParent<PlayerHealth>();
+
+            if (playerHealth != null)
+            {
+                playerHealth.Damage(m_damage);
+            }
         }
     }
 
