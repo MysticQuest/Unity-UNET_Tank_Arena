@@ -71,15 +71,15 @@ public class PlayerHealth : NetworkBehaviour
     {
         foreach (Collider c in GetComponentsInChildren<Collider>())
         {
-            c.enabled = false;
+            c.enabled = state;
         }
         foreach (Renderer r in GetComponentsInChildren<Renderer>())
         {
-            r.enabled = false;
+            r.enabled = state;
         }
         foreach (Canvas c in GetComponentsInChildren<Canvas>())
         {
-            c.enabled = false;
+            c.enabled = state;
         }
     }
 

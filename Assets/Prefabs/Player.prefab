@@ -158,7 +158,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4949879024793996}
   - component: {fileID: 54353364585859976}
-  - component: {fileID: 136267513784055494}
   - component: {fileID: 114318622127326446}
   - component: {fileID: 114710412645190418}
   - component: {fileID: 114410526232554268}
@@ -523,6 +522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e26294087d3fb0e47bbbe3391f5c17f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_rigidbody: {fileID: 0}
   m_chassis: {fileID: 4429626056111298}
   m_turret: {fileID: 4580201277434688}
   m_moveSpeed: 250
@@ -739,19 +739,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!136 &136267513784055494
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1606051291087368}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 2
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!222 &222179386030824826
 CanvasRenderer:
   m_ObjectHideFlags: 1
