@@ -60,10 +60,10 @@ public class Bullet : NetworkBehaviour
 
     void CheckCollisions(Collision collision)
     {
-        Debug.Log("Checking");
+
         if (m_collisionTags.Contains(collision.collider.tag))
         {
-            Debug.Log("Collided with Player");
+
             Explode();
 
             PlayerHealth playerHealth = collision.gameObject.GetComponentInParent<PlayerHealth>();

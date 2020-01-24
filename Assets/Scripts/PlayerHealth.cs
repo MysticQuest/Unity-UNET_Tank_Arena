@@ -7,7 +7,9 @@ using UnityEngine.UI;
 public class PlayerHealth : NetworkBehaviour
 {
 
-    float m_currentHealth;
+    [SyncVar(hook = "UpdateHealthBar")]
+    public float m_currentHealth;
+
     public float m_maxHealth = 3;
     public bool m_isDead = false;
 
@@ -37,8 +39,13 @@ public class PlayerHealth : NetworkBehaviour
 
     public void Damage(float damage)
     {
+        if (!isServer)
+        {
+            return;
+        }
+
         m_currentHealth -= damage;
-        UpdateHealthBar(m_currentHealth);
+
         if (m_currentHealth <= 0 && !m_isDead)
         {
             m_isDead = true;
