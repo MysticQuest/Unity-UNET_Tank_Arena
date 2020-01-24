@@ -9,10 +9,10 @@ public class PlayerShoot : NetworkBehaviour
     public Rigidbody m_bulletPrefab;
     public Transform m_bulletSpawn;
 
-    public int m_shotsPerBurst = 2;
+    public int m_shotsPerBurst = 1;
     int m_shotsLeft;
     bool m_isReloading;
-    public float m_reloadTime = 1f;
+    public float m_reloadTime = 2f;
 
     // Use this for initialization
     void Start()
@@ -46,5 +46,19 @@ public class PlayerShoot : NetworkBehaviour
         {
             rbody.velocity = bullet.m_speed * m_bulletSpawn.transform.forward;
         }
+
+        m_shotsLeft--;
+        if (m_shotsLeft <= 0)
+        {
+            StartCoroutine("Reload");
+        }
+    }
+
+    IEnumerator Reload()
+    {
+        m_shotsLeft = m_shotsPerBurst;
+        m_isReloading = true;
+        yield return new WaitForSeconds(m_reloadTime);
+        m_isReloading = false;
     }
 }

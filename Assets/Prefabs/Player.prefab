@@ -566,8 +566,8 @@ MonoBehaviour:
   m_bulletPrefab: {fileID: 54365490129517904, guid: 94b7b5f36eb19154294283336e29bb29,
     type: 2}
   m_bulletSpawn: {fileID: 4011275086426646}
-  m_shotsPerBurst: 2
-  m_reloadTime: 1
+  m_shotsPerBurst: 1
+  m_reloadTime: 2
 --- !u!114 &114710412645190418
 MonoBehaviour:
   m_ObjectHideFlags: 1
