@@ -35,7 +35,7 @@ public class PlayerController : NetworkBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!isLocalPlayer)
+        if (!isLocalPlayer || m_pHealth.m_isDead)
         {
             return;
         }
@@ -46,7 +46,7 @@ public class PlayerController : NetworkBehaviour
 
     void Update()
     {
-        if (!isLocalPlayer)
+        if (!isLocalPlayer || m_pHealth.m_isDead)
         {
             return;
         }
@@ -64,5 +64,18 @@ public class PlayerController : NetworkBehaviour
 
         Vector3 turretDir = Utility.GetWorldPointScreen(Input.mousePosition, m_pMotor.m_turret.position.y) - m_pMotor.m_turret.position;
         m_pMotor.RotateTurret(turretDir);
+    }
+
+    void Disable()
+    {
+        StartCoroutine("Respawn");
+    }
+
+    IEnumerator Respawn()
+    {
+        transform.position = Vector3.zero;
+        m_pMotor.m_rigidbody.velocity = Vector3.zero;
+        yield return new WaitForSeconds(3f);
+        m_pHealth.Reset();
     }
 }

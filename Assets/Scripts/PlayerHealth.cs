@@ -11,6 +11,8 @@ public class PlayerHealth : NetworkBehaviour
     public float m_currentHealth;
 
     public float m_maxHealth = 3;
+
+    [SyncVar]
     public bool m_isDead = false;
 
     public GameObject m_deathPrefab;
@@ -20,7 +22,7 @@ public class PlayerHealth : NetworkBehaviour
     // Use this for initialization
     void Start()
     {
-        m_currentHealth = m_maxHealth;
+        Reset();
     }
 
     // Update is called once per frame
@@ -49,11 +51,12 @@ public class PlayerHealth : NetworkBehaviour
         if (m_currentHealth <= 0 && !m_isDead)
         {
             m_isDead = true;
-            Die();
+            RpcDie();
         }
     }
 
-    void Die()
+    [ClientRpc]
+    void RpcDie()
     {
         if (m_deathPrefab)
         {
@@ -78,5 +81,12 @@ public class PlayerHealth : NetworkBehaviour
         {
             c.enabled = false;
         }
+    }
+
+    public void Reset()
+    {
+        m_currentHealth = m_maxHealth;
+        SetActiveState(true);
+        m_isDead = false;
     }
 }
