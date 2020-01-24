@@ -66,10 +66,7 @@ public class Bullet : NetworkBehaviour
         m_rigidBody.velocity = Vector3.zero;
         m_rigidBody.Sleep();
 
-        foreach (MeshRenderer mr in GetComponentsInChildren<MeshRenderer>())
-        {
-            mr.enabled = false;
-        }
+
         foreach (ParticleSystem ps in GetComponentsInChildren<ParticleSystem>())
         {
             ps.Stop();
@@ -80,7 +77,13 @@ public class Bullet : NetworkBehaviour
             m_explosionFX.transform.parent = null;
             m_explosionFX.Play();
         }
-
-        Destroy(gameObject);
+        if (isServer) //example of how they can be destroyed on the server and be destroyed in the clients as well
+        {
+            Destroy(gameObject);
+            foreach (MeshRenderer mr in GetComponentsInChildren<MeshRenderer>())
+            {
+                mr.enabled = false;
+            }
+        }
     }
 }
