@@ -12,8 +12,11 @@ public class GameManager : NetworkBehaviour
 
     int m_minPlayers = 2;
     int m_maxPlayers = 4;
+
     [SyncVar]
     public int m_playerCount = 0;
+
+    public Color[] m_playerColors = { Color.red, Color.blue, Color.green, Color.magenta };
 
     public static GameManager Instance
     {
@@ -71,13 +74,14 @@ public class GameManager : NetworkBehaviour
 
         while (m_playerCount < m_minPlayers)
         {
-            DisablePlayers();
+            // DisablePlayers();
             yield return null;
         }
     }
 
     IEnumerator PlayGame()
     {
+        EnablePlayers();
         if (m_messageText != null)
         {
             m_messageText.gameObject.SetActive(false);
@@ -107,6 +111,15 @@ public class GameManager : NetworkBehaviour
     void DisablePlayers()
     {
         SetPlayerState(false);
+    }
+
+    public void AddPlayer(PlayerSetup pSetup)
+    {
+        if (m_playerCount < m_maxPlayers)
+        {
+            pSetup.m_playerColor = m_playerColors[m_playerCount];
+            pSetup.m_playerNum = m_playerCount + 1;
+        }
     }
 }
 

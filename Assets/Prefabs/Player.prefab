@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 223279230359112470}
   - component: {fileID: 114395832471287232}
   - component: {fileID: 114307321831588978}
+  - component: {fileID: 114651133190299124}
   m_Layer: 0
   m_Name: HealthDisplay
   m_TagString: Untagged
@@ -142,6 +143,7 @@ GameObject:
   - component: {fileID: 223165960987139584}
   - component: {fileID: 114162672535911404}
   - component: {fileID: 114271711932960490}
+  - component: {fileID: 114312585878998364}
   m_Layer: 0
   m_Name: NameDisplay
   m_TagString: Untagged
@@ -211,7 +213,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1949837734316888}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0104, y: 0.737, z: 2.284}
+  m_LocalPosition: {x: 0.0104, y: 0.737, z: 2.385}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4580201277434688}
@@ -279,7 +281,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1606051291087368}
   m_LocalRotation: {x: 0.00000008146034, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.17363775, y: 0, z: 1.039022}
+  m_LocalPosition: {x: -2.7073102, y: 0, z: -17.50642}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4429626056111298}
@@ -511,6 +513,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114312585878998364
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1604836040485874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 887ece670bcd88a45a5f200ed00c6624, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_camera: {fileID: 0}
 --- !u!114 &114318622127326446
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -600,7 +614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f71a7664cb44d9f48b798aaf4682ba27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playerColor: {r: 1, g: 0.2647059, b: 0.2647059, a: 0}
+  m_playerColor: {r: 1, g: 0.9264706, b: 0.9264706, a: 0}
   m_baseName: PLAYER
   m_playerNum: 1
   m_playerNameText: {fileID: 114454743360891752}
@@ -669,6 +683,18 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: tester
+--- !u!114 &114651133190299124
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1005460687114972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 887ece670bcd88a45a5f200ed00c6624, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_camera: {fileID: 0}
 --- !u!114 &114674182007123692
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -712,6 +738,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d5fcfda38b57794fb6275ff6eaa52c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_spawnFX: {fileID: 118206, guid: 49cea2316ec6a41589509c0e782d9213, type: 2}
 --- !u!114 &114774416470778278
 MonoBehaviour:
   m_ObjectHideFlags: 1

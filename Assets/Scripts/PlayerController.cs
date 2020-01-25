@@ -75,6 +75,8 @@ public class PlayerController : NetworkBehaviour
 
         Vector3 turretDir = Utility.GetWorldPointScreen(Input.mousePosition, m_pMotor.m_turret.position.y) - m_pMotor.m_turret.position;
         m_pMotor.RotateTurret(turretDir);
+
+        Camera.main.transform.position = GetComponent<Transform>().position + transform.up * 30 - transform.forward * 12;
     }
 
     void Disable()

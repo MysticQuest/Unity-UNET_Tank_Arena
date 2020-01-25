@@ -10,7 +10,7 @@ public class FaceCamera : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        if (m_camera = null)
+        if (m_camera == null)
         {
             m_camera = Camera.main;
         }
