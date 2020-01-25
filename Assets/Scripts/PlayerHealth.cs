@@ -47,7 +47,7 @@ public class PlayerHealth : NetworkBehaviour
         {
             return;
         }
-        if (pc != null)
+        if (pc != null && pc != this.GetComponent<PlayerController>())
         {
             m_lastAttacker = pc;
         }
@@ -61,6 +61,7 @@ public class PlayerHealth : NetworkBehaviour
                 m_lastAttacker.m_score++;
                 m_lastAttacker = null;
             }
+            GameManager.Instance.UpdateScoreBoard();
             m_isDead = true;
             RpcDie();
         }
