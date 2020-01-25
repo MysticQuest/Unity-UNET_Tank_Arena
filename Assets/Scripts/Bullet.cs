@@ -21,6 +21,8 @@ public class Bullet : NetworkBehaviour
     public int m_bounces = 3;
     public float m_damage = 1f;
 
+    public PlayerController m_owner;
+
     // Use this for initialization
     void Start()
     {
@@ -70,7 +72,7 @@ public class Bullet : NetworkBehaviour
 
             if (playerHealth != null)
             {
-                playerHealth.Damage(m_damage);
+                playerHealth.Damage(m_damage, m_owner);
             }
         }
     }

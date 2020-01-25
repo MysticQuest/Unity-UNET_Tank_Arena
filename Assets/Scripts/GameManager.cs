@@ -10,7 +10,7 @@ public class GameManager : NetworkBehaviour
 
     public Text m_messageText;
 
-    int m_minPlayers = 2;
+    int m_minPlayers = 1;
     int m_maxPlayers = 4;
 
     [SyncVar]
@@ -74,7 +74,7 @@ public class GameManager : NetworkBehaviour
 
         while (m_playerCount < m_minPlayers)
         {
-            // DisablePlayers();
+            DisablePlayers();
             yield return null;
         }
     }

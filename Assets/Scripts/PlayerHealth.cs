@@ -19,6 +19,8 @@ public class PlayerHealth : NetworkBehaviour
 
     public RectTransform m_healthBar;
 
+    public PlayerController m_lastAttacker;
+
     // Use this for initialization
     void Start()
     {
@@ -39,17 +41,26 @@ public class PlayerHealth : NetworkBehaviour
         }
     }
 
-    public void Damage(float damage)
+    public void Damage(float damage, PlayerController pc = null)
     {
         if (!isServer)
         {
             return;
+        }
+        if (pc != null)
+        {
+            m_lastAttacker = pc;
         }
 
         m_currentHealth -= damage;
 
         if (m_currentHealth <= 0 && !m_isDead)
         {
+            if (m_lastAttacker != null)
+            {
+                m_lastAttacker.m_score++;
+                m_lastAttacker = null;
+            }
             m_isDead = true;
             RpcDie();
         }

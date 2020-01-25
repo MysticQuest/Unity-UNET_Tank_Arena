@@ -21,6 +21,8 @@ public class PlayerController : NetworkBehaviour
 
     public GameObject m_spawnFX;
 
+    public int m_score;
+
     // Use this for initialization
     void Start()
     {
