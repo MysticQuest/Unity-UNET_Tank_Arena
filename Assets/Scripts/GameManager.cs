@@ -1,11 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Networking;
 
 public class GameManager : NetworkBehaviour
 {
     static GameManager instance;
+
+    public Text m_messageText;
+
+    int m_minPlayers = 2;
+    int m_maxPlayers = 4;
+    [SyncVar]
+    public int m_playerCount = 0;
 
     public static GameManager Instance
     {
@@ -39,4 +47,66 @@ public class GameManager : NetworkBehaviour
             Destroy(gameObject);
         }
     }
+
+    void Start()
+    {
+        StartCoroutine("GameLoop");
+    }
+
+    IEnumerator GameLoop()
+    {
+        yield return StartCoroutine("EnterLobby");
+        yield return StartCoroutine("PlayGame");
+        yield return StartCoroutine("EndGame");
+    }
+
+    IEnumerator EnterLobby()
+    {
+
+        if (m_messageText != null)
+        {
+            m_messageText.gameObject.SetActive(true);
+            m_messageText.text = "Waiting for Players";
+        }
+
+        while (m_playerCount < m_minPlayers)
+        {
+            DisablePlayers();
+            yield return null;
+        }
+    }
+
+    IEnumerator PlayGame()
+    {
+        if (m_messageText != null)
+        {
+            m_messageText.gameObject.SetActive(false);
+        }
+
+        yield return null;
+    }
+
+    IEnumerator EndGame()
+    {
+        yield return null;
+    }
+
+    void SetPlayerState(bool state)
+    {
+        PlayerController[] allPlayers = GameObject.FindObjectsOfType<PlayerController>();
+        foreach (PlayerController p in allPlayers)
+        {
+            p.enabled = state;
+        }
+    }
+
+    void EnablePlayers()
+    {
+        SetPlayerState(true);
+    }
+    void DisablePlayers()
+    {
+        SetPlayerState(false);
+    }
 }
+
