@@ -13,8 +13,8 @@ public class PlayerController : NetworkBehaviour
 
     PlayerShoot m_pShoot;
     PlayerMotor m_pMotor;
-    PlayerSetup m_pSetup;
-    PlayerHealth m_pHealth;
+    public PlayerSetup m_pSetup;
+    public PlayerHealth m_pHealth;
 
     Vector3 m_originalPosition;
     NetworkStartPosition[] m_spawnPoints;

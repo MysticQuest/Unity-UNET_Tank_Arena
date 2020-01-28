@@ -10,7 +10,7 @@ public class GameManager : NetworkBehaviour
 
     public Text m_messageText;
 
-    int m_minPlayers = 1;
+    int m_minPlayers = 2;
     int m_maxPlayers = 4;
 
     [SyncVar]
@@ -20,6 +20,12 @@ public class GameManager : NetworkBehaviour
     public List<PlayerController> m_allPlayers;
     public List<Text> m_nameLabelText;
     public List<Text> m_playerScoreText;
+
+    public int m_maxScore = 3;
+
+    [SyncVar]
+    bool m_gameOver = false;
+    PlayerController m_winner;
 
     public static GameManager Instance
     {
@@ -64,19 +70,14 @@ public class GameManager : NetworkBehaviour
         yield return StartCoroutine("EnterLobby");
         yield return StartCoroutine("PlayGame");
         yield return StartCoroutine("EndGame");
+        StartCoroutine("GameLoop");
     }
 
     IEnumerator EnterLobby()
     {
-
-        if (m_messageText != null)
-        {
-            m_messageText.gameObject.SetActive(true);
-            m_messageText.text = "Waiting for Players";
-        }
-
         while (m_playerCount < m_minPlayers)
         {
+            UpdateMessage("Waiting for players...");
             DisablePlayers();
             yield return null;
         }
@@ -84,23 +85,45 @@ public class GameManager : NetworkBehaviour
 
     IEnumerator PlayGame()
     {
+        yield return new WaitForSeconds(1f);
+        UpdateMessage("3");
+        yield return new WaitForSeconds(1f);
+        UpdateMessage("2");
+        yield return new WaitForSeconds(1f);
+        UpdateMessage("1");
+        yield return new WaitForSeconds(1f);
+        UpdateMessage("FIGHT!");
+        yield return new WaitForSeconds(1f);
+
+
         EnablePlayers();
         UpdateScoreBoard();
 
-        if (m_messageText != null)
-        {
-            m_messageText.gameObject.SetActive(false);
-        }
+        UpdateMessage("");
 
-        yield return null;
+        m_winner = null;
+        while (m_gameOver == false)
+        {
+            yield return null;
+        }
     }
 
     IEnumerator EndGame()
     {
-        yield return null;
+        DisablePlayers();
+        UpdateMessage("GAME OVER \n " + m_winner.m_pSetup.m_playerNameText.text + " is victorious!");
+        Reset();
+        yield return new WaitForSeconds(3f);
+        UpdateMessage("Restarting in 3...");
+        yield return new WaitForSeconds(1f);
+        UpdateMessage("Restarting in 2...");
+        yield return new WaitForSeconds(1f);
+        UpdateMessage("Restarting in 1...");
+        yield return new WaitForSeconds(1f);
     }
 
-    void SetPlayerState(bool state)
+    [ClientRpc]
+    void RpcSetPlayerState(bool state)
     {
         PlayerController[] allPlayers = GameObject.FindObjectsOfType<PlayerController>();
         foreach (PlayerController p in allPlayers)
@@ -111,11 +134,18 @@ public class GameManager : NetworkBehaviour
 
     void EnablePlayers()
     {
-        SetPlayerState(true);
+        if (isServer)
+        {
+            RpcSetPlayerState(true);
+        }
+
     }
     void DisablePlayers()
     {
-        SetPlayerState(false);
+        if (isServer)
+        {
+            RpcSetPlayerState(false);
+        }
     }
 
     public void AddPlayer(PlayerSetup pSetup)
@@ -149,6 +179,12 @@ public class GameManager : NetworkBehaviour
     {
         if (isServer)
         {
+            m_winner = GetWinner();
+            if (m_winner != null)
+            {
+                m_gameOver = true;
+            }
+
             string[] names = new string[m_playerCount];
             int[] scores = new int[m_playerCount];
 
@@ -159,6 +195,61 @@ public class GameManager : NetworkBehaviour
             }
 
             RpcUpdateScoreBoard(names, scores);
+        }
+    }
+
+    [ClientRpc]
+    void RpcUpdateMessage(string msg)
+    {
+        if (m_messageText != null)
+        {
+            m_messageText.gameObject.SetActive(true);
+            m_messageText.text = msg;
+        }
+    }
+
+    public void UpdateMessage(string msg)
+    {
+        if (isServer)
+        {
+            RpcUpdateMessage(msg);
+        }
+    }
+
+    PlayerController GetWinner()
+    {
+        if (isServer)
+        {
+            for (int i = 0; i < m_playerCount; i++)
+            {
+                if (m_allPlayers[i].m_score >= m_maxScore)
+                {
+                    return m_allPlayers[i];
+                }
+            }
+        }
+        return null;
+    }
+
+    void Reset()
+    {
+        if (isServer)
+        {
+            RpcReset();
+            UpdateScoreBoard();
+            m_winner = null;
+            m_gameOver = false;
+        }
+    }
+
+    [ClientRpc]
+    void RpcReset()
+    {
+        PlayerController[] allPlayers = GameObject.FindObjectsOfType<PlayerController>();
+        foreach (PlayerController p in allPlayers)
+        {
+            p.m_score = 0;
+            p.m_pHealth.m_currentHealth = p.m_pHealth.m_maxHealth;
         }
     }
 
