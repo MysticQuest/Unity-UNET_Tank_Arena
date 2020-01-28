@@ -4184,6 +4184,8 @@ GameObject:
   m_Component:
   - component: {fileID: 469086783}
   - component: {fileID: 469086784}
+  - component: {fileID: 469086785}
+  - component: {fileID: 469086786}
   m_Layer: 0
   m_Name: Spawn3
   m_TagString: Untagged
@@ -4215,6 +4217,30 @@ MonoBehaviour:
   m_Script: {fileID: -1050975500, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &469086785
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 469086782}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &469086786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 469086782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fc67d2c42175da4c9144db14cd1805e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_isOccupied: 0
 --- !u!1 &469915947 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: df4796b594b970842b69211cb0078c5d, type: 3}
@@ -7506,6 +7532,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_messageText: {fileID: 2086559467}
+  m_minPlayers: 1
+  m_maxPlayers: 4
   m_playerCount: 0
   m_playerColors:
   - {r: 1, g: 0, b: 0, a: 1}
@@ -7523,6 +7551,7 @@ MonoBehaviour:
   - {fileID: 1305222689}
   - {fileID: 2005137537}
   - {fileID: 1212002455}
+  m_maxScore: 3
 --- !u!4 &898111119
 Transform:
   m_ObjectHideFlags: 0
@@ -11662,6 +11691,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1363057983}
   - component: {fileID: 1363057984}
+  - component: {fileID: 1363057985}
+  - component: {fileID: 1363057986}
   m_Layer: 0
   m_Name: Spawn4
   m_TagString: Untagged
@@ -11693,6 +11724,30 @@ MonoBehaviour:
   m_Script: {fileID: -1050975500, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &1363057985
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1363057982}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1363057986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1363057982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fc67d2c42175da4c9144db14cd1805e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_isOccupied: 0
 --- !u!1001 &1365276004
 Prefab:
   m_ObjectHideFlags: 0
@@ -12526,6 +12581,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1484269497}
   - component: {fileID: 1484269498}
+  - component: {fileID: 1484269499}
+  - component: {fileID: 1484269500}
   m_Layer: 0
   m_Name: Spawn2
   m_TagString: Untagged
@@ -12557,6 +12614,30 @@ MonoBehaviour:
   m_Script: {fileID: -1050975500, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &1484269499
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1484269496}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1484269500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1484269496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fc67d2c42175da4c9144db14cd1805e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_isOccupied: 0
 --- !u!1 &1486501629 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 3f79402ff4ca9c54d96a09d1a77540d5, type: 3}
@@ -16271,6 +16352,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1929916501}
   - component: {fileID: 1929916502}
+  - component: {fileID: 1929916503}
+  - component: {fileID: 1929916504}
   m_Layer: 0
   m_Name: Spawn1
   m_TagString: Untagged
@@ -16302,6 +16385,30 @@ MonoBehaviour:
   m_Script: {fileID: -1050975500, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &1929916503
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1929916500}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1929916504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1929916500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fc67d2c42175da4c9144db14cd1805e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_isOccupied: 0
 --- !u!1001 &1938223210
 Prefab:
   m_ObjectHideFlags: 0

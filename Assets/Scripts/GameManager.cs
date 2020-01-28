@@ -10,8 +10,8 @@ public class GameManager : NetworkBehaviour
 
     public Text m_messageText;
 
-    int m_minPlayers = 2;
-    int m_maxPlayers = 4;
+    public int m_minPlayers = 2;
+    public int m_maxPlayers = 4;
 
     [SyncVar]
     public int m_playerCount = 0;
