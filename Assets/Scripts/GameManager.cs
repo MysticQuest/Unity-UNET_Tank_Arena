@@ -195,9 +195,10 @@ public class GameManager : NetworkBehaviour
             {
                 m_playerNameText[i].text = playerNames[i];
             }
-
+            // if (playerScores[i] != null)
+            // {
             m_playerScoreText[i].text = playerScores[i].ToString();
-
+            //}
         }
 
     }

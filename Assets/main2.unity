@@ -7720,16 +7720,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_messageText: {fileID: 2086559467}
-  m_minPlayers: 1
-  m_maxPlayers: 4
-  m_playerCount: 0
-  m_playerColors:
-  - {r: 1, g: 0, b: 0, a: 1}
-  - {r: 0, g: 0, b: 1, a: 1}
-  - {r: 0, g: 1, b: 0, a: 1}
-  - {r: 1, g: 0, b: 1, a: 1}
-  m_allPlayers: []
-  m_nameLabelText:
+  m_playerNameText:
   - {fileID: 1366497854}
   - {fileID: 635717595}
   - {fileID: 1386174212}
