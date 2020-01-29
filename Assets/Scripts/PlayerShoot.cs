@@ -17,6 +17,8 @@ public class PlayerShoot : NetworkBehaviour
     public ParticleSystem m_missFireEffect;
     public LayerMask m_obstacleMask;
 
+    bool m_canShoot = false;
+
     // Use this for initialization
     void Start()
     {
@@ -24,15 +26,19 @@ public class PlayerShoot : NetworkBehaviour
         m_isReloading = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Enable()
     {
+        m_canShoot = true;
+    }
 
+    public void Disable()
+    {
+        m_canShoot = false;
     }
 
     public void Shoot()
     {
-        if (m_isReloading || m_bulletPrefab == null)
+        if (m_isReloading || m_bulletPrefab == null || !m_canShoot)
         {
             return;
         }

@@ -61,7 +61,7 @@ public class PlayerHealth : NetworkBehaviour
                 m_lastAttacker.m_score++;
                 m_lastAttacker = null;
             }
-            GameManager.Instance.UpdateScoreBoard();
+            // GameManager.Instance.UpdateScoreBoard();
             m_isDead = true;
             RpcDie();
         }
@@ -76,7 +76,7 @@ public class PlayerHealth : NetworkBehaviour
             GameObject.Destroy(deathFx, 3f);
         }
         SetActiveState(false);
-        gameObject.SendMessage("Disable");
+        gameObject.SendMessage("Respawn");
     }
 
     void SetActiveState(bool state)

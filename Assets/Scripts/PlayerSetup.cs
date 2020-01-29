@@ -18,10 +18,15 @@ public class PlayerSetup : NetworkBehaviour
     public override void OnStartClient()
     {
         base.OnStartClient();
-    }
 
-    void Start()
-    {
+        if (!isServer)
+        {
+            PlayerManager pManager = GetComponent<PlayerManager>();
+            if (pManager != null)
+            {
+                GameManager.m_allPlayers.Add(pManager);
+            }
+        }
         UpdateName(m_name);
         UpdateColor(m_playerColor);
     }

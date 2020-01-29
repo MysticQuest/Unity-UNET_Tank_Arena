@@ -21,9 +21,14 @@ public class PlayerManager : NetworkBehaviour
 
     public GameObject m_spawnFX;
 
+    [SyncVar]
     public int m_score;
 
-    // Use this for initialization
+    void OnDestroy()
+    {
+        GameManager.m_allPlayers.Remove(this);
+    }
+
     void Start()
     {
         m_pHealth = GetComponent<PlayerHealth>();
@@ -81,12 +86,25 @@ public class PlayerManager : NetworkBehaviour
         Camera.main.transform.position = GetComponent<Transform>().position + transform.up * 30 - transform.forward * 12;
     }
 
-    void Disable()
+    public void EnableControls()
     {
-        StartCoroutine("Respawn");
+        m_pMotor.Enable();
+        m_pShoot.Enable();
     }
 
-    IEnumerator Respawn()
+    public void DisableControls()
+    {
+        m_pMotor.Disable();
+        m_pShoot.Disable();
+    }
+
+
+    void Respawn()
+    {
+        StartCoroutine("RespawnRoutine");
+    }
+
+    IEnumerator RespawnRoutine()
     {
         SpawnPoint oldSpawn = GetNearestSpawnpoint();
 
@@ -106,6 +124,8 @@ public class PlayerManager : NetworkBehaviour
             GameObject spawnFX = Instantiate(m_spawnFX, transform.position + Vector3.up * 0.5f, Quaternion.identity) as GameObject;
             Destroy(spawnFX, 3f);
         }
+
+        EnableControls();
     }
 
     SpawnPoint GetNearestSpawnpoint()
