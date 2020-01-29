@@ -9,28 +9,21 @@ public class PlayerSetup : NetworkBehaviour
 
     [SyncVar(hook = "UpdateColor")]
     public Color m_playerColor;
-    public string m_baseName = "PLAYER";
 
     [SyncVar(hook = "UpdateName")]
-    public int m_playerNum = 1;
+    public string m_name = "PLAYER";
+
     public Text m_playerNameText;
 
     public override void OnStartClient()
     {
         base.OnStartClient();
-        if (m_playerNameText != null)
-        {
-            m_playerNameText.enabled = false;
-        }
     }
 
     void Start()
     {
-        if (!isLocalPlayer)
-        {
-            UpdateName(m_playerNum);
-            UpdateColor(m_playerColor);
-        }
+        UpdateName(m_name);
+        UpdateColor(m_playerColor);
     }
 
     void UpdateColor(Color pColor)
@@ -42,27 +35,27 @@ public class PlayerSetup : NetworkBehaviour
         }
     }
 
-    void UpdateName(int pNum)
+    void UpdateName(string name)
     {
         if (m_playerNameText != null)
         {
             m_playerNameText.enabled = true;
-            m_playerNameText.text = m_baseName + pNum.ToString();
+            m_playerNameText.text = m_name;
         }
     }
 
-    public override void OnStartLocalPlayer()
-    {
-        base.OnStartLocalPlayer();
-        // UpdateColor();
-        // UpdateName();
-        CmdSetupPlayer();
-    }
+    // public override void OnStartLocalPlayer()
+    // {
+    //     base.OnStartLocalPlayer();
+    //     // UpdateColor();
+    //     // UpdateName();
+    //     CmdSetupPlayer();
+    // }
 
-    [Command]
-    void CmdSetupPlayer()
-    {
-        GameManager.Instance.AddPlayer(this);
-        GameManager.Instance.m_playerCount++;
-    }
+    // [Command]
+    // void CmdSetupPlayer()
+    // {
+    //     GameManager.Instance.AddPlayer(this);
+    //     GameManager.Instance.m_playerCount++;
+    // }
 }

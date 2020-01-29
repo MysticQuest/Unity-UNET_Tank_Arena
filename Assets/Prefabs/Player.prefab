@@ -213,7 +213,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1949837734316888}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0104, y: 0.737, z: 2.385}
+  m_LocalPosition: {x: 0.0104, y: 0.737, z: 2.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4580201277434688}
@@ -281,7 +281,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1606051291087368}
   m_LocalRotation: {x: 0.00000008146034, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.7073102, y: 0, z: -17.50642}
+  m_LocalPosition: {x: 7.1984897, y: 0, z: 0.26233292}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4429626056111298}
@@ -711,6 +711,10 @@ MonoBehaviour:
   m_bulletSpawn: {fileID: 4011275086426646}
   m_shotsPerBurst: 1
   m_reloadTime: 2
+  m_missFireEffect: {fileID: 19800000, guid: 06d7eeb38dffc4879b91f487e4924902, type: 2}
+  m_obstacleMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &114710412645190418
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -727,6 +731,7 @@ MonoBehaviour:
   m_isDead: 0
   m_deathPrefab: {fileID: 140182, guid: ead306b39f6b0428fa246bfff7d603ff, type: 2}
   m_healthBar: {fileID: 224386651682142650}
+  m_lastAttacker: {fileID: 0}
 --- !u!114 &114746237773499272
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -738,7 +743,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d5fcfda38b57794fb6275ff6eaa52c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_pSetup: {fileID: 0}
+  m_pHealth: {fileID: 0}
   m_spawnFX: {fileID: 118206, guid: 49cea2316ec6a41589509c0e782d9213, type: 2}
+  m_score: 0
 --- !u!114 &114774416470778278
 MonoBehaviour:
   m_ObjectHideFlags: 1

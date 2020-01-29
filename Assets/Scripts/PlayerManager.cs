@@ -8,7 +8,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerSetup))]
 [RequireComponent(typeof(PlayerShoot))]
 
-public class PlayerController : NetworkBehaviour
+public class PlayerManager : NetworkBehaviour
 {
 
     PlayerShoot m_pShoot;

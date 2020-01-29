@@ -21,7 +21,9 @@ public class Bullet : NetworkBehaviour
     public int m_bounces = 3;
     public float m_damage = 1f;
 
-    public PlayerController m_owner;
+    public PlayerManager m_owner;
+
+    public float m_delay = 0.03f;
 
     // Use this for initialization
     void Start()
@@ -79,6 +81,10 @@ public class Bullet : NetworkBehaviour
 
     IEnumerator Expires()
     {
+        m_collider.enabled = false;
+        yield return new WaitForSeconds(m_delay);
+        m_collider.enabled = true;
+
         yield return new WaitForSeconds(m_lifetime);
         Explode();
     }
@@ -99,6 +105,7 @@ public class Bullet : NetworkBehaviour
         {
             m_explosionFX.transform.parent = null;
             m_explosionFX.Play();
+            Destroy(m_explosionFX.gameObject, 3f);
         }
         if (isServer) //example of how they can be destroyed on the server and be destroyed in the clients as well
         {
