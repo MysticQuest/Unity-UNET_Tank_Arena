@@ -102,6 +102,7 @@ public class GameManager : NetworkBehaviour
     {
         Reset();
         RpcStartGame();
+        UpdateScoreBoard();
         yield return new WaitForSeconds(1f);
     }
 
@@ -204,8 +205,8 @@ public class GameManager : NetworkBehaviour
     [Server]
     public void UpdateScoreBoard()
     {
-        string[] pNames;
-        int[] pScores;
+        string[] pNames = new string[m_allPlayers.Count];
+        int[] pScores = new int[m_allPlayers.Count];
 
         for (int i = 0; i < m_allPlayers.Count; i++)
         {
@@ -215,7 +216,7 @@ public class GameManager : NetworkBehaviour
                 pScores[i] = m_allPlayers[i].m_score;
             }
         }
-        RpcUpdateScoreBoard();
+        RpcUpdateScoreBoard(pNames, pScores);
     }
 
     [ClientRpc]
