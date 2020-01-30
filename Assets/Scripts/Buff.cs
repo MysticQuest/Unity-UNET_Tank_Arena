@@ -57,8 +57,6 @@ public class Buff : MonoBehaviour
         {
             GameObject buffedChild = collision.gameObject;
             buffedPlayer = buffedChild.transform.root.gameObject;
-            Debug.Log(buffedChild);
-            Debug.Log(buffedPlayer);
 
             m_collider.enabled = false;
             m_buffFX.Stop();
@@ -159,7 +157,7 @@ public class Buff : MonoBehaviour
         var temp2 = m_pMotor.m_turretRotateSpeed;
         var temp3 = m_pMotor.m_chassisRotateSpeed;
 
-        m_pMotor.m_moveSpeed = buffedBulletSpeed;
+        m_pMotor.m_moveSpeed = buffedSpeed;
         m_pMotor.m_turretRotateSpeed = buffedTurretRotation;
         m_pMotor.m_chassisRotateSpeed = buffedRotation;
 

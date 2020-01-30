@@ -14641,7 +14641,7 @@ MonoBehaviour:
   - {fileID: 1305222689}
   - {fileID: 2005137537}
   - {fileID: 1212002455}
-  m_maxScore: 3
+  m_maxScore: 5
 --- !u!4 &898111119
 Transform:
   m_ObjectHideFlags: 0
@@ -24789,18 +24789,17 @@ MonoBehaviour:
   m_pShoot: {fileID: 0}
   m_pMotor: {fileID: 0}
   m_pHealth: {fileID: 0}
-  m_pBullet: {fileID: 0}
   m_buff: {fileID: 1403426414663578, guid: c42de17292527434fbe7a6b1223a5213, type: 2}
   m_buffFX: {fileID: 373616562}
-  m_buffCD: 20
-  m_buffDuration: 10
-  buffedBulletSpeed: 80
+  m_buffCD: 35
+  m_buffDuration: 20
+  buffedBulletSpeed: 40
   buffedShotsPerBurst: 2
-  buffedBulletLifetime: 15
-  buffedBulletBounces: 6
-  buffedSpeed: 400
-  buffedRotation: 5
-  buffedTurretRotation: 8
+  buffedBulletLifetime: 20
+  buffedBulletBounces: 10
+  buffedSpeed: 500
+  buffedRotation: 8
+  buffedTurretRotation: 10
 --- !u!4 &1647669608
 Transform:
   m_ObjectHideFlags: 0
