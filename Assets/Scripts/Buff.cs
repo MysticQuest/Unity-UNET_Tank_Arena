@@ -12,7 +12,6 @@ public class Buff : MonoBehaviour
     public PlayerShoot m_pShoot;
     public PlayerMotor m_pMotor;
     public PlayerHealth m_pHealth;
-    public Bullet m_pBullet;
 
     Collider m_collider;
     public GameObject m_buff;
@@ -56,12 +55,13 @@ public class Buff : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("BUFFED!");
+            GameObject buffedChild = collision.gameObject;
+            buffedPlayer = buffedChild.transform.root.gameObject;
+            Debug.Log(buffedChild);
+            Debug.Log(buffedPlayer);
 
             m_collider.enabled = false;
             m_buffFX.Stop();
-
-            buffedPlayer = collision.gameObject;
 
             BuffPlayer();
             StartCoroutine("EnableBuff");
