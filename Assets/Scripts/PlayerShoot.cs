@@ -16,7 +16,7 @@ public class PlayerShoot : NetworkBehaviour
 
     public int m_bSpeed = 15;
     public int m_bBounces = 3;
-    public int m_bLifetime = 5;
+    public float m_bLifetime = 5;
 
     public ParticleSystem m_missFireEffect;
     public LayerMask m_obstacleMask;

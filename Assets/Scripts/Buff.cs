@@ -27,12 +27,12 @@ public class Buff : NetworkBehaviour
 
     public int buffedShotsPerBurst;
 
-    public int buffedBulletLifetime;
+    public float buffedBulletLifetime;
     public int buffedBulletBounces;
 
-    public int buffedSpeed;
-    public int buffedRotation;
-    public int buffedTurretRotation;
+    public float buffedSpeed;
+    public float buffedRotation;
+    public float buffedTurretRotation;
 
 
     // Use this for initialization
@@ -140,34 +140,34 @@ public class Buff : NetworkBehaviour
     IEnumerator BuffBulletLife()
     {
 
-        var temp = m_pShoot.m_bBounces;
-        var temp2 = m_pShoot.m_bLifetime;
+        var tempBounce = m_pShoot.m_bBounces;
+        var tempLifetime = m_pShoot.m_bLifetime;
 
         m_pShoot.m_bBounces = buffedBulletBounces;
         m_pShoot.m_bLifetime = buffedBulletLifetime;
 
         yield return new WaitForSeconds(m_buffDuration);
 
-        m_pShoot.m_bBounces = temp;
-        m_pShoot.m_bLifetime = temp2;
+        m_pShoot.m_bBounces = tempBounce;
+        m_pShoot.m_bLifetime = tempLifetime;
     }
 
     IEnumerator BuffBurst()
     {
 
-        var temp = m_pShoot.m_shotsPerBurst;
+        var tempBurst = m_pShoot.m_shotsPerBurst;
         m_pShoot.m_shotsPerBurst = buffedShotsPerBurst;
         yield return new WaitForSeconds(m_buffDuration);
-        m_pShoot.m_shotsPerBurst = temp;
+        m_pShoot.m_shotsPerBurst = tempBurst;
     }
 
     IEnumerator BuffSpeed()
     {
 
 
-        var temp = m_pMotor.m_moveSpeed;
-        var temp2 = m_pMotor.m_turretRotateSpeed;
-        var temp3 = m_pMotor.m_chassisRotateSpeed;
+        var tempSpeed = m_pMotor.m_moveSpeed;
+        var tempTurret = m_pMotor.m_turretRotateSpeed;
+        var tempRotation = m_pMotor.m_chassisRotateSpeed;
 
         m_pMotor.m_moveSpeed = buffedSpeed;
         m_pMotor.m_turretRotateSpeed = buffedTurretRotation;
@@ -175,18 +175,18 @@ public class Buff : NetworkBehaviour
 
         yield return new WaitForSeconds(m_buffDuration);
 
-        m_pMotor.m_moveSpeed = temp;
-        m_pMotor.m_turretRotateSpeed = temp2;
-        m_pMotor.m_chassisRotateSpeed = temp3;
+        m_pMotor.m_moveSpeed = tempSpeed;
+        m_pMotor.m_turretRotateSpeed = tempTurret;
+        m_pMotor.m_chassisRotateSpeed = tempRotation;
     }
 
     IEnumerator BuffBullet()
     {
 
-        var temp = m_pShoot.m_bSpeed;
+        var tempBSpeed = m_pShoot.m_bSpeed;
         m_pShoot.m_bSpeed = buffedBulletSpeed;
         yield return new WaitForSeconds(m_buffDuration);
-        m_pShoot.m_bSpeed = temp;
+        m_pShoot.m_bSpeed = tempBSpeed;
     }
 
 

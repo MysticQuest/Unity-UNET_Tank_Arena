@@ -75,6 +75,7 @@ public class PlayerHealth : NetworkBehaviour
             GameObject deathFx = Instantiate(m_deathPrefab, transform.position + Vector3.up * 0.5f, Quaternion.identity) as GameObject;
             GameObject.Destroy(deathFx, 3f);
         }
+
         SetActiveState(false);
         gameObject.SendMessage("Respawn");
     }

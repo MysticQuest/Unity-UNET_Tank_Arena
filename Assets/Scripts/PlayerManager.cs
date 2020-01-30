@@ -18,8 +18,8 @@ public class PlayerManager : NetworkBehaviour
     public PlayerSetup m_pSetup;
     public PlayerHealth m_pHealth;
 
-    Vector3 m_originalPosition;
-    NetworkStartPosition[] m_spawnPoints;
+    public Vector3 m_originalPosition;
+    public NetworkStartPosition[] m_spawnPoints;
 
     public GameObject m_spawnFX;
 
@@ -108,16 +108,17 @@ public class PlayerManager : NetworkBehaviour
 
     IEnumerator RespawnRoutine()
     {
+        yield return new WaitForSeconds(1f);
         SpawnPoint oldSpawn = GetNearestSpawnpoint();
-
+        transform.position = GetRandomSpawn();
         if (oldSpawn != null)
         {
             oldSpawn.m_isOccupied = false;
         }
 
         m_pMotor.m_rigidbody.velocity = Vector3.zero;
-        yield return new WaitForSeconds(3f);
-        transform.position = GetRandomSpawn();
+        yield return new WaitForSeconds(2f);
+
         m_pHealth.Reset();
 
         if (m_spawnFX != null)
