@@ -108,8 +108,6 @@ public class PlayerManager : NetworkBehaviour
     {
         SpawnPoint oldSpawn = GetNearestSpawnpoint();
 
-        transform.position = GetRandomSpawn();
-
         if (oldSpawn != null)
         {
             oldSpawn.m_isOccupied = false;
@@ -117,6 +115,7 @@ public class PlayerManager : NetworkBehaviour
 
         m_pMotor.m_rigidbody.velocity = Vector3.zero;
         yield return new WaitForSeconds(3f);
+        transform.position = GetRandomSpawn();
         m_pHealth.Reset();
 
         if (m_spawnFX != null)

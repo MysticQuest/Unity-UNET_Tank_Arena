@@ -8,6 +8,8 @@ using System.Linq;
 [RequireComponent(typeof(Collider))]
 public class Bullet : NetworkBehaviour
 {
+    PlayerShoot m_pShoot;
+
     Rigidbody m_rigidBody;
     Collider m_collider;
     List<ParticleSystem> m_allParticles;
@@ -16,9 +18,9 @@ public class Bullet : NetworkBehaviour
     public List<string> m_bounceTags;
     public List<string> m_collisionTags;
 
-    public int m_speed = 100;
-    public float m_lifetime = 3f;
-    public int m_bounces = 3;
+    // public int m_speed;
+    public float m_lifetime;
+    public int m_bounces;
     public float m_damage = 1f;
 
     public PlayerManager m_owner;
@@ -29,15 +31,14 @@ public class Bullet : NetworkBehaviour
     void Start()
     {
         m_allParticles = GetComponentsInChildren<ParticleSystem>().ToList();
+
+        m_pShoot = m_owner.GetComponent<PlayerShoot>();
+        m_bounces = m_pShoot.m_bBounces;
+        m_lifetime = m_pShoot.m_bLifetime;
+
         m_rigidBody = GetComponent<Rigidbody>();
         m_collider = GetComponent<Collider>();
         StartCoroutine("Expires");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     void OnCollisionExit(Collision collision)
@@ -89,8 +90,37 @@ public class Bullet : NetworkBehaviour
         Explode();
     }
 
+    // [ClientRpc]
+    // void RpcExplode()
+    // {
+    //     m_collider.enabled = false;
+    //     m_rigidBody.velocity = Vector3.zero;
+    //     m_rigidBody.Sleep();
+
+
+    //     foreach (ParticleSystem ps in GetComponentsInChildren<ParticleSystem>())
+    //     {
+    //         ps.Stop();
+    //     }
+
+    //     if (m_explosionFX != null)
+    //     {
+    //         m_explosionFX.transform.parent = null;
+    //         m_explosionFX.Play();
+    //         Destroy(m_explosionFX.gameObject, 3f);
+    //     }
+
+
+    //     Destroy(gameObject);
+    //     foreach (MeshRenderer mr in GetComponentsInChildren<MeshRenderer>())
+    //     {
+    //         mr.enabled = false;
+    //     }
+    // }
+
     void Explode()
     {
+
         m_collider.enabled = false;
         m_rigidBody.velocity = Vector3.zero;
         m_rigidBody.Sleep();
@@ -107,9 +137,11 @@ public class Bullet : NetworkBehaviour
             m_explosionFX.Play();
             Destroy(m_explosionFX.gameObject, 3f);
         }
-        if (isServer) //example of how they can be destroyed on the server and be destroyed in the clients as well
+
+        if (isServer)
         {
             Destroy(gameObject);
+
             foreach (MeshRenderer mr in GetComponentsInChildren<MeshRenderer>())
             {
                 mr.enabled = false;

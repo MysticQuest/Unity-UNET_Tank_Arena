@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 4183814276445138}
   - component: {fileID: 33209463505986902}
   - component: {fileID: 23908016026328690}
-  - component: {fileID: 64258250237653868}
+  - component: {fileID: 65505278875987334}
   m_Layer: 0
   m_Name: tankTurret
   m_TagString: Player
@@ -213,7 +213,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1949837734316888}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0104, y: 0.737, z: 2.45}
+  m_LocalPosition: {x: 0.0104, y: 0.737, z: 2.369}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4580201277434688}
@@ -281,7 +281,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1606051291087368}
   m_LocalRotation: {x: 0.00000008146034, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.1984897, y: 0, z: 0.26233292}
+  m_LocalPosition: {x: -5.199093, y: 0, z: 3.8900337}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4429626056111298}
@@ -388,20 +388,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
---- !u!64 &64258250237653868
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1362116432007516}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: -1
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: ef136b621b21a6d4ba3b0047249ee789, type: 3}
 --- !u!65 &65411474780305968
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -412,8 +398,20 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.449338, y: 1.0003033, z: 3.151727}
-  m_Center: {x: -0.0046010017, y: 0.49948466, z: -0.041170478}
+  m_Size: {x: 1.449338, y: 1.0003033, z: 2.985621}
+  m_Center: {x: -0.0046010017, y: 0.49948466, z: -0.086051285}
+--- !u!65 &65505278875987334
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1362116432007516}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.26560688, y: 0.26848912, z: 3.467752}
+  m_Center: {x: -0.0026049614, y: 1.1243721, z: 0.48345804}
 --- !u!114 &114113791242531202
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -427,7 +425,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Target: {fileID: 4429626056111298}
   m_ChildIndex: 0
-  m_SendInterval: 0.0625
+  m_SendInterval: 0.05882353
   m_SyncRotationAxis: 2
   m_RotationSyncCompression: 0
   m_MovementThreshold: 0.001
@@ -573,7 +571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 3
-  m_SendInterval: 0.05882353
+  m_SendInterval: 0.0625
   m_SyncRotationAxis: 0
   m_RotationSyncCompression: 0
   m_SyncSpin: 0
@@ -615,8 +613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerColor: {r: 1, g: 0.9264706, b: 0.9264706, a: 0}
-  m_baseName: PLAYER
-  m_playerNum: 1
+  m_name: PLAYER
   m_playerNameText: {fileID: 114454743360891752}
 --- !u!114 &114451601625725698
 MonoBehaviour:
@@ -711,6 +708,9 @@ MonoBehaviour:
   m_bulletSpawn: {fileID: 4011275086426646}
   m_shotsPerBurst: 1
   m_reloadTime: 2
+  m_bSpeed: 15
+  m_bBounces: 3
+  m_bLifetime: 5
   m_missFireEffect: {fileID: 19800000, guid: 06d7eeb38dffc4879b91f487e4924902, type: 2}
   m_obstacleMask:
     serializedVersion: 2

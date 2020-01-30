@@ -14,6 +14,10 @@ public class PlayerShoot : NetworkBehaviour
     bool m_isReloading;
     public float m_reloadTime = 2f;
 
+    public int m_bSpeed = 100;
+    public int m_bBounces = 3;
+    public int m_bLifetime = 5;
+
     public ParticleSystem m_missFireEffect;
     public LayerMask m_obstacleMask;
 
@@ -81,7 +85,7 @@ public class PlayerShoot : NetworkBehaviour
         bullet = rbody.gameObject.GetComponent<Bullet>();
         if (rbody != null)
         {
-            rbody.velocity = bullet.m_speed * m_bulletSpawn.transform.forward;
+            rbody.velocity = m_bSpeed * m_bulletSpawn.transform.forward;
             bullet.m_owner = GetComponent<PlayerManager>();
             NetworkServer.Spawn(rbody.gameObject);
         }
