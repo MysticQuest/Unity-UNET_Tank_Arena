@@ -14,7 +14,7 @@ public class PlayerShoot : NetworkBehaviour
     bool m_isReloading;
     public float m_reloadTime = 2f;
 
-    public int m_bSpeed = 100;
+    public int m_bSpeed = 15;
     public int m_bBounces = 3;
     public int m_bLifetime = 5;
 
@@ -64,7 +64,6 @@ public class PlayerShoot : NetworkBehaviour
         }
         else
         {
-
             CmdShoot();
 
             m_shotsLeft--;

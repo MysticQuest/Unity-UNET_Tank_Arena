@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114395832471287232}
   - component: {fileID: 114307321831588978}
   - component: {fileID: 114651133190299124}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HealthDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 224756717274093416}
   - component: {fileID: 222179386030824826}
   - component: {fileID: 114170766036764236}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 224721612681108560}
   - component: {fileID: 222342888852651874}
   - component: {fileID: 114454743360891752}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 33893085281870310}
   - component: {fileID: 23462505896177342}
   - component: {fileID: 65411474780305968}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: tankChasis
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 33209463505986902}
   - component: {fileID: 23908016026328690}
   - component: {fileID: 65505278875987334}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: tankTurret
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 224386651682142650}
   - component: {fileID: 222193518737393150}
   - component: {fileID: 114774416470778278}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Green
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4429626056111298}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: chasis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 114162672535911404}
   - component: {fileID: 114271711932960490}
   - component: {fileID: 114312585878998364}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: NameDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,16 +160,16 @@ GameObject:
   m_Component:
   - component: {fileID: 4949879024793996}
   - component: {fileID: 54353364585859976}
+  - component: {fileID: 114410526232554268}
   - component: {fileID: 114318622127326446}
   - component: {fileID: 114710412645190418}
-  - component: {fileID: 114410526232554268}
   - component: {fileID: 114674182007123692}
   - component: {fileID: 114746237773499272}
   - component: {fileID: 114451601625725698}
   - component: {fileID: 114370015161334418}
   - component: {fileID: 114113791242531202}
   - component: {fileID: 114360419204764298}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4580201277434688}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4011275086426646}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: bulletSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -538,7 +538,7 @@ MonoBehaviour:
   m_chassis: {fileID: 4429626056111298}
   m_turret: {fileID: 4580201277434688}
   m_moveSpeed: 250
-  m_chassisRotateSpeed: 2
+  m_chassisRotateSpeed: 3
   m_turretRotateSpeed: 3
 --- !u!114 &114360419204764298
 MonoBehaviour:
@@ -743,6 +743,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d5fcfda38b57794fb6275ff6eaa52c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerColliders: []
   m_pSetup: {fileID: 0}
   m_pHealth: {fileID: 0}
   m_spawnFX: {fileID: 118206, guid: 49cea2316ec6a41589509c0e782d9213, type: 2}

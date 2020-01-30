@@ -11,6 +11,8 @@ using UnityEngine;
 public class PlayerManager : NetworkBehaviour
 {
 
+    public Collider[] triggerColliders;
+
     PlayerShoot m_pShoot;
     PlayerMotor m_pMotor;
     public PlayerSetup m_pSetup;
@@ -129,7 +131,7 @@ public class PlayerManager : NetworkBehaviour
 
     SpawnPoint GetNearestSpawnpoint()
     {
-        Collider[] triggerColliders = Physics.OverlapSphere(transform.position, 3f, Physics.AllLayers, QueryTriggerInteraction.Collide);
+        triggerColliders = Physics.OverlapSphere(transform.position, 3f, Physics.AllLayers, QueryTriggerInteraction.Collide);
         foreach (Collider c in triggerColliders)
         {
             SpawnPoint spawnPoint = c.GetComponent<SpawnPoint>();

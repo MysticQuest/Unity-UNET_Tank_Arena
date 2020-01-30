@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Networking;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerHealth))]
@@ -7,7 +8,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerShoot))]
 [RequireComponent(typeof(Bullet))]
 
-public class Buff : MonoBehaviour
+public class Buff : NetworkBehaviour
 {
     public PlayerShoot m_pShoot;
     public PlayerMotor m_pMotor;
@@ -41,6 +42,7 @@ public class Buff : MonoBehaviour
         m_collider.enabled = false;
         m_buffFX.Stop();
 
+
         StartCoroutine("EnableBuff");
     }
 
@@ -49,6 +51,7 @@ public class Buff : MonoBehaviour
         yield return new WaitForSeconds(m_buffCD);
         m_collider.enabled = true;
         m_buffFX.Play();
+
     }
 
     void OnTriggerEnter(Collider collision)
@@ -57,6 +60,12 @@ public class Buff : MonoBehaviour
         {
             GameObject buffedChild = collision.gameObject;
             buffedPlayer = buffedChild.transform.root.gameObject;
+
+            m_pHealth = buffedPlayer.GetComponent<PlayerHealth>();
+            m_pShoot = buffedPlayer.GetComponent<PlayerShoot>();
+            m_pMotor = buffedPlayer.GetComponent<PlayerMotor>();
+
+            Debug.Log("Collided at Buff");
 
             m_collider.enabled = false;
             m_buffFX.Stop();
@@ -79,9 +88,11 @@ public class Buff : MonoBehaviour
         Destroy(buffEffect, m_buffDuration);
     }
 
+
     void BuffPicker()
     {
-        int actions = Random.Range(0, 6);
+        int actions = Random.Range(0, 5);
+        Debug.Log(actions);
         switch (actions)
         {
             case 0:
@@ -110,6 +121,7 @@ public class Buff : MonoBehaviour
                 break;
 
             default:
+                Debug.Log("DEFAULT");
                 break;
 
         }
@@ -117,7 +129,7 @@ public class Buff : MonoBehaviour
 
     IEnumerator BuffRegen()
     {
-        m_pHealth = buffedPlayer.GetComponent<PlayerHealth>();
+
         m_pHealth.m_currentHealth += 1;
         yield return new WaitForSeconds(1f);
         m_pHealth.m_currentHealth += 1;
@@ -127,7 +139,7 @@ public class Buff : MonoBehaviour
 
     IEnumerator BuffBulletLife()
     {
-        m_pShoot = buffedPlayer.GetComponent<PlayerShoot>();
+
         var temp = m_pShoot.m_bBounces;
         var temp2 = m_pShoot.m_bLifetime;
 
@@ -142,7 +154,7 @@ public class Buff : MonoBehaviour
 
     IEnumerator BuffBurst()
     {
-        m_pShoot = buffedPlayer.GetComponent<PlayerShoot>();
+
         var temp = m_pShoot.m_shotsPerBurst;
         m_pShoot.m_shotsPerBurst = buffedShotsPerBurst;
         yield return new WaitForSeconds(m_buffDuration);
@@ -151,7 +163,7 @@ public class Buff : MonoBehaviour
 
     IEnumerator BuffSpeed()
     {
-        m_pMotor = buffedPlayer.GetComponent<PlayerMotor>();
+
 
         var temp = m_pMotor.m_moveSpeed;
         var temp2 = m_pMotor.m_turretRotateSpeed;
@@ -170,7 +182,7 @@ public class Buff : MonoBehaviour
 
     IEnumerator BuffBullet()
     {
-        m_pShoot = buffedPlayer.GetComponent<PlayerShoot>();
+
         var temp = m_pShoot.m_bSpeed;
         m_pShoot.m_bSpeed = buffedBulletSpeed;
         yield return new WaitForSeconds(m_buffDuration);

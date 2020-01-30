@@ -12,20 +12,23 @@ public class Bullet : NetworkBehaviour
 
     Rigidbody m_rigidBody;
     Collider m_collider;
-    List<ParticleSystem> m_allParticles;
+    public List<ParticleSystem> m_allParticles;
 
     public ParticleSystem m_explosionFX;
     public List<string> m_bounceTags;
     public List<string> m_collisionTags;
 
-    // public int m_speed;
-    public float m_lifetime;
-    public int m_bounces;
+    // public int m_speed = 15;
+    public float m_lifetime = 5f;
+    public int m_bounces = 3;
     public float m_damage = 1f;
 
     public PlayerManager m_owner;
 
     public float m_delay = 0.03f;
+
+    public GameObject bulletFXobj;
+    public GameObject HitFXobj;
 
     // Use this for initialization
     void Start()
@@ -41,12 +44,18 @@ public class Bullet : NetworkBehaviour
         StartCoroutine("Expires");
     }
 
-    void OnCollisionExit(Collision collision)
+    [Command]
+    void CmdBulletLook()
     {
         if (m_rigidBody.velocity != Vector3.zero)
         {
             transform.rotation = Quaternion.LookRotation(m_rigidBody.velocity);
         }
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        CmdBulletLook();
     }
 
     void OnCollisionEnter(Collision collision)
@@ -57,7 +66,7 @@ public class Bullet : NetworkBehaviour
         {
             if (m_bounces <= 0)
             {
-                Explode();
+                CmdExplode();
             }
             m_bounces--;
         }
@@ -69,7 +78,7 @@ public class Bullet : NetworkBehaviour
         if (m_collisionTags.Contains(collision.collider.tag))
         {
 
-            Explode();
+            CmdExplode();
 
             PlayerHealth playerHealth = collision.gameObject.GetComponentInParent<PlayerHealth>();
 
@@ -87,18 +96,19 @@ public class Bullet : NetworkBehaviour
         m_collider.enabled = true;
 
         yield return new WaitForSeconds(m_lifetime);
-        Explode();
+        CmdExplode();
     }
 
-    // [ClientRpc]
-    // void RpcExplode()
+
+
+    // void Explode()
     // {
     //     m_collider.enabled = false;
     //     m_rigidBody.velocity = Vector3.zero;
     //     m_rigidBody.Sleep();
 
 
-    //     foreach (ParticleSystem ps in GetComponentsInChildren<ParticleSystem>())
+    //     foreach (ParticleSystem ps in m_allParticles)
     //     {
     //         ps.Stop();
     //     }
@@ -110,17 +120,19 @@ public class Bullet : NetworkBehaviour
     //         Destroy(m_explosionFX.gameObject, 3f);
     //     }
 
-
-    //     Destroy(gameObject);
-    //     foreach (MeshRenderer mr in GetComponentsInChildren<MeshRenderer>())
+    //     if (isServer)
     //     {
-    //         mr.enabled = false;
+    //         foreach (MeshRenderer mr in GetComponentsInChildren<MeshRenderer>())
+    //         {
+    //             mr.enabled = false;
+    //         }
+    //         Destroy(gameObject, 1f);
     //     }
     // }
 
-    void Explode()
+    [Command]
+    void CmdExplode()
     {
-
         m_collider.enabled = false;
         m_rigidBody.velocity = Vector3.zero;
         m_rigidBody.Sleep();
@@ -131,21 +143,31 @@ public class Bullet : NetworkBehaviour
             ps.Stop();
         }
 
-        if (m_explosionFX != null)
+        // if (m_explosionFX != null)
+        // {
+        //     m_explosionFX.transform.parent = null;
+        //     m_explosionFX.Play();
+        //     Destroy(m_explosionFX.gameObject, 3f);
+        // }
+
+        HitFXobj = Instantiate(bulletFXobj, transform.position, transform.rotation) as GameObject;
+        NetworkServer.Spawn(HitFXobj);
+        Destroy(HitFXobj, 3f);
+
+
+        foreach (MeshRenderer mr in GetComponentsInChildren<MeshRenderer>())
         {
-            m_explosionFX.transform.parent = null;
-            m_explosionFX.Play();
-            Destroy(m_explosionFX.gameObject, 3f);
+            mr.enabled = false;
         }
 
-        if (isServer)
-        {
-            Destroy(gameObject);
+        Destroy(gameObject);
 
-            foreach (MeshRenderer mr in GetComponentsInChildren<MeshRenderer>())
-            {
-                mr.enabled = false;
-            }
-        }
+
+
+        // if (isServer)
+        // {
+
+        // }
     }
+
 }
