@@ -26,6 +26,15 @@ public class PlayerShoot : NetworkBehaviour
 
     bool m_canShoot = false;
 
+    public AudioSource sound;
+    public AudioClip cannon;
+
+    public Texture2D cursorTexture;
+    public CursorMode cursorMode = CursorMode.Auto;
+    public Vector2 hotSpot = Vector2.zero;
+
+    public float shootVol;
+
     // Use this for initialization
     void Start()
     {
@@ -34,6 +43,10 @@ public class PlayerShoot : NetworkBehaviour
 
         // buffObj = GameObject.FindGameObjectWithTag("Buff");
         // buff = buffObj.GetComponent<Buff>();
+        sound = GetComponent<AudioSource>();
+
+        hotSpot = new Vector2(cursorTexture.width / 1.3f, cursorTexture.height / 1.3f);
+        Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
     }
 
     public void Enable()
@@ -88,8 +101,10 @@ public class PlayerShoot : NetworkBehaviour
 
         Rigidbody rbody = Instantiate(m_bulletPrefab, m_bulletSpawn.position, m_bulletSpawn.rotation) as Rigidbody;
         bullet = rbody.gameObject.GetComponent<Bullet>();
+
         if (rbody != null)
         {
+            sound.PlayOneShot(cannon, shootVol);
             rbody.velocity = m_bSpeed * m_bulletSpawn.transform.forward;
             bullet.m_owner = GetComponent<PlayerManager>();
             NetworkServer.Spawn(rbody.gameObject);

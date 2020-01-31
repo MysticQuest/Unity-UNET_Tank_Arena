@@ -133,10 +133,10 @@ public class Bullet : NetworkBehaviour
     [Command]
     void CmdExplode()
     {
+        Vector3 pos = transform.position;
         m_collider.enabled = false;
         m_rigidBody.velocity = Vector3.zero;
         m_rigidBody.Sleep();
-
 
         foreach (ParticleSystem ps in GetComponentsInChildren<ParticleSystem>())
         {
@@ -153,7 +153,6 @@ public class Bullet : NetworkBehaviour
         HitFXobj = Instantiate(bulletFXobj, transform.position, transform.rotation) as GameObject;
         NetworkServer.Spawn(HitFXobj);
         Destroy(HitFXobj, 3f);
-
 
         foreach (MeshRenderer mr in GetComponentsInChildren<MeshRenderer>())
         {

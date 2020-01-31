@@ -169,7 +169,8 @@ GameObject:
   - component: {fileID: 114370015161334418}
   - component: {fileID: 114113791242531202}
   - component: {fileID: 114360419204764298}
-  - component: {fileID: 82894604260184440}
+  - component: {fileID: 82732470769276488}
+  - component: {fileID: 81943854186187572}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -282,7 +283,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1606051291087368}
   m_LocalRotation: {x: 0.00000008146034, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.199093, y: 0, z: 3.8900337}
+  m_LocalPosition: {x: -3.0149593, y: 0.15860558, z: -0.30368495}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4429626056111298}
@@ -306,7 +307,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 8ac3d6f76486bc64eb97dd7ecbf0842d, type: 3}
+  - {fileID: 2100000, guid: 9e52c53a0d29f2c49adf71e8cc6ca46f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -340,7 +341,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ef136b621b21a6d4ba3b0047249ee789, type: 3}
+  - {fileID: 2100000, guid: 9e52c53a0d29f2c49adf71e8cc6ca46f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -413,7 +414,14 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.26560688, y: 0.26848912, z: 3.467752}
   m_Center: {x: -0.0026049614, y: 1.1243721, z: 0.48345804}
---- !u!82 &82894604260184440
+--- !u!81 &81943854186187572
+AudioListener:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1606051291087368}
+  m_Enabled: 1
+--- !u!82 &82732470769276488
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -422,7 +430,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 51f0d63f2d48ef641b4614db5a0c97ea, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 8cfe034e255ba734f9589dd2096b5e0d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -432,8 +440,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 5
+  MaxDistance: 35
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -445,24 +453,42 @@ AudioSource:
     - serializedVersion: 2
       time: 0
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -1.820021
+      outSlope: -1.820021
       tangentMode: 0
     - serializedVersion: 2
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
+      time: 0.17580993
+      value: 0.60829234
+      inSlope: -2.2912025
+      outSlope: -2.2912025
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.33191183
+      value: 0.33199155
+      inSlope: -0.8481741
+      outSlope: -0.8481741
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.69899565
+      value: 0.17049415
+      inSlope: -0.32052398
+      outSlope: -0.32052398
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.96616364
+      value: 0.011108398
+      inSlope: -1.0256411
+      outSlope: -1.0256411
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   panLevelCustomCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -485,8 +511,8 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
-      time: 0
-      value: 1
+      time: 0.10150337
+      value: 1.0111122
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -800,6 +826,12 @@ MonoBehaviour:
   m_obstacleMask:
     serializedVersion: 2
     m_Bits: 256
+  sound: {fileID: 0}
+  cannon: {fileID: 8300000, guid: d1c3513d4f5ad20418c2e1f76debcb52, type: 3}
+  cursorTexture: {fileID: 2800000, guid: 18dc28e04d1ae8e479343984a489c226, type: 3}
+  cursorMode: 0
+  hotSpot: {x: 0, y: 0}
+  shootVol: 0.07
 --- !u!114 &114710412645190418
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -818,7 +850,10 @@ MonoBehaviour:
   m_healthBar: {fileID: 224386651682142650}
   m_lastAttacker: {fileID: 0}
   sound: {fileID: 0}
-  boom: {fileID: 0}
+  bigBoom: {fileID: 8300000, guid: 76ba208a2e7e01348a9245b00c67f251, type: 3}
+  boom: {fileID: 8300000, guid: 51f0d63f2d48ef641b4614db5a0c97ea, type: 3}
+  hitVol: 0.5
+  deathVol: 0.4
 --- !u!114 &114746237773499272
 MonoBehaviour:
   m_ObjectHideFlags: 1

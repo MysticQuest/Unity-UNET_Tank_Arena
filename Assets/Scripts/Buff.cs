@@ -167,11 +167,11 @@ public class Buff : NetworkBehaviour
 
     IEnumerator BuffRegen()
     {
-
-        m_pHealth.m_currentHealth += 1;
         yield return new WaitForSeconds(1f);
         m_pHealth.m_currentHealth += 1;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
+        m_pHealth.m_currentHealth += 1;
+        yield return new WaitForSeconds(2f);
         m_pHealth.m_currentHealth += 1;
     }
 

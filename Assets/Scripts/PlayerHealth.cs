@@ -22,7 +22,11 @@ public class PlayerHealth : NetworkBehaviour
     public PlayerManager m_lastAttacker;
 
     public AudioSource sound;
+    public AudioClip bigBoom;
     public AudioClip boom;
+
+    public float hitVol;
+    public float deathVol;
 
     // Use this for initialization
     void Start()
@@ -56,6 +60,8 @@ public class PlayerHealth : NetworkBehaviour
             m_lastAttacker = pc;
         }
 
+        sound.PlayOneShot(boom, hitVol);
+
         m_currentHealth -= damage;
 
         if (m_currentHealth <= 0 && !m_isDead)
@@ -76,7 +82,7 @@ public class PlayerHealth : NetworkBehaviour
     {
         if (m_deathPrefab)
         {
-            sound.Play();
+            sound.PlayOneShot(bigBoom, deathVol);
             GameObject deathFx = Instantiate(m_deathPrefab, transform.position + Vector3.up * 0.5f, Quaternion.identity) as GameObject;
             GameObject.Destroy(deathFx, 3f);
         }
