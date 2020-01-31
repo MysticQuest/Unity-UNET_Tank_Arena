@@ -21,9 +21,13 @@ public class PlayerHealth : NetworkBehaviour
 
     public PlayerManager m_lastAttacker;
 
+    public AudioSource sound;
+    public AudioClip boom;
+
     // Use this for initialization
     void Start()
     {
+        sound = GetComponent<AudioSource>();
         Reset();
     }
 
@@ -72,6 +76,7 @@ public class PlayerHealth : NetworkBehaviour
     {
         if (m_deathPrefab)
         {
+            sound.Play();
             GameObject deathFx = Instantiate(m_deathPrefab, transform.position + Vector3.up * 0.5f, Quaternion.identity) as GameObject;
             GameObject.Destroy(deathFx, 3f);
         }
@@ -101,5 +106,14 @@ public class PlayerHealth : NetworkBehaviour
         m_currentHealth = m_maxHealth;
         SetActiveState(true);
         m_isDead = false;
+    }
+
+    public IEnumerator Regen()
+    {
+        m_currentHealth += 1;
+        yield return new WaitForSeconds(1f);
+        m_currentHealth += 1;
+        yield return new WaitForSeconds(1f);
+        m_currentHealth += 1;
     }
 }

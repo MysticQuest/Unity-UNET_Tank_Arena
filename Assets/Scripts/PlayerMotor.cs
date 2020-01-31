@@ -10,6 +10,8 @@ public class PlayerMotor : NetworkBehaviour
     public Rigidbody m_rigidbody;
     public Transform m_chassis;
     public Transform m_turret;
+    public GameObject buffObj;
+    public Buff buff;
 
     public float m_moveSpeed = 100f;
     public float m_chassisRotateSpeed = 1f;
@@ -25,6 +27,9 @@ public class PlayerMotor : NetworkBehaviour
     void Start()
     {
         m_rigidbody = GetComponent<Rigidbody>();
+
+        // buffObj = GameObject.FindGameObjectWithTag("Buff");
+        // buff = buffObj.GetComponent<Buff>();
     }
 
     public void Enable()
@@ -72,5 +77,23 @@ public class PlayerMotor : NetworkBehaviour
         }
     }
 
+    // public IEnumerator BuffSpeed()
+    // {
+
+
+    //     var tempSpeed = m_moveSpeed;
+    //     var tempTurret = m_turretRotateSpeed;
+    //     var tempRotation = m_chassisRotateSpeed;
+
+    //     m_moveSpeed = buff.buffedSpeed;
+    //     m_turretRotateSpeed = buff.buffedTurretRotation;
+    //     m_chassisRotateSpeed = buff.buffedRotation;
+
+    //     yield return new WaitForSeconds(buff.m_buffDuration);
+
+    //     m_moveSpeed = tempSpeed;
+    //     m_turretRotateSpeed = tempTurret;
+    //     m_chassisRotateSpeed = tempRotation;
+    // }
 
 }

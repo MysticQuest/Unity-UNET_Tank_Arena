@@ -9,6 +9,9 @@ public class PlayerShoot : NetworkBehaviour
     public Rigidbody m_bulletPrefab;
     public Transform m_bulletSpawn;
 
+    public GameObject buffObj;
+    public Buff buff;
+
     public int m_shotsPerBurst = 1;
     int m_shotsLeft;
     bool m_isReloading;
@@ -28,6 +31,9 @@ public class PlayerShoot : NetworkBehaviour
     {
         m_shotsLeft = m_shotsPerBurst;
         m_isReloading = false;
+
+        // buffObj = GameObject.FindGameObjectWithTag("Buff");
+        // buff = buffObj.GetComponent<Buff>();
     }
 
     public void Enable()
@@ -97,4 +103,35 @@ public class PlayerShoot : NetworkBehaviour
         yield return new WaitForSeconds(m_reloadTime);
         m_isReloading = false;
     }
+
+    // public IEnumerator BuffBullet()
+    // {
+    //     var tempBSpeed = m_bSpeed;
+    //     m_bSpeed = buff.buffedBulletSpeed;
+    //     yield return new WaitForSeconds(buff.m_buffDuration);
+    //     m_bSpeed = tempBSpeed;
+    // }
+
+    // public IEnumerator BuffBurst()
+    // {
+    //     var tempBurst = m_shotsPerBurst;
+    //     m_shotsPerBurst = buff.buffedShotsPerBurst;
+    //     yield return new WaitForSeconds(buff.m_buffDuration);
+    //     m_shotsPerBurst = tempBurst;
+    // }
+
+    // public IEnumerator BuffBulletLife()
+    // {
+
+    //     var tempBounce = m_bBounces;
+    //     var tempLifetime = m_bLifetime;
+
+    //     m_bBounces = buff.buffedBulletBounces;
+    //     m_bLifetime = buff.buffedBulletLifetime;
+
+    //     yield return new WaitForSeconds(buff.m_buffDuration);
+
+    //     m_bBounces = tempBounce;
+    //     m_bLifetime = tempLifetime;
+    // }
 }

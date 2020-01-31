@@ -117,7 +117,7 @@ public class PlayerManager : NetworkBehaviour
         }
 
         m_pMotor.m_rigidbody.velocity = Vector3.zero;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         m_pHealth.Reset();
 

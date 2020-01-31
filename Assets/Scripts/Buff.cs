@@ -88,6 +88,44 @@ public class Buff : NetworkBehaviour
         Destroy(buffEffect, m_buffDuration);
     }
 
+    // void BuffPicker()
+    // {
+    //     int actions = Random.Range(0, 5);
+    //     Debug.Log(actions);
+    //     switch (actions)
+    //     {
+    //         case 0:
+    //             StartCoroutine(m_pShoot.BuffBullet());
+    //             Debug.Log("buff bullet");
+    //             break;
+
+    //         case 1:
+    //             StartCoroutine(m_pHealth.Regen());
+    //             Debug.Log("buff regen");
+    //             break;
+
+    //         case 2:
+    //             StartCoroutine(m_pShoot.BuffBulletLife());
+    //             Debug.Log("buff bullet life");
+    //             break;
+
+    //         case 3:
+    //             StartCoroutine(m_pShoot.BuffBurst());
+    //             Debug.Log("buff burst");
+    //             break;
+
+    //         case 4:
+    //             StartCoroutine(m_pMotor.BuffSpeed());
+    //             Debug.Log("buff speed");
+    //             break;
+
+    //         default:
+    //             Debug.Log("DEFAULT");
+    //             break;
+
+    //     }
+    // }
+
 
     void BuffPicker()
     {
