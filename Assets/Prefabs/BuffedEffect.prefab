@@ -53,6 +53,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4911561819031120}
+  - component: {fileID: 114445044025703692}
   m_Layer: 0
   m_Name: BuffedEffect
   m_TagString: Untagged
@@ -156,8 +157,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1403426414663578}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.4974215, y: -3.5777502, z: 0.5810456}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4138764057856528}
@@ -244,6 +245,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114445044025703692
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1403426414663578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 002dbe5f7ff8f2e4e88a4f4f055ec287, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  green: {r: 0, g: 0.11764705, b: 0, a: 1}
+  magenda: {r: 0.102941155, g: 0, b: 0.102941155, a: 1}
+  red: {r: 0.2794118, g: 0, b: 0, a: 1}
+  blue: {r: 0, g: 0, b: 0.16176468, a: 1}
+  yellow: {r: 0.28676468, g: 0.26652247, b: 0, a: 1}
+  color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!198 &198478492599148276
 ParticleSystem:
   m_ObjectHideFlags: 1

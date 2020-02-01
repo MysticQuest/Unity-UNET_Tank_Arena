@@ -30771,12 +30771,13 @@ MonoBehaviour:
   m_pHealth: {fileID: 0}
   m_buff: {fileID: 1403426414663578, guid: c42de17292527434fbe7a6b1223a5213, type: 2}
   m_buffFX: {fileID: 373616562}
-  m_buffCD: 25
-  m_buffDuration: 15
-  buffedBulletSpeed: 30
+  FXscript: {fileID: 0}
+  m_buffCD: 5
+  m_buffDuration: 5
+  buffedBulletSpeed: 40
   buffedShotsPerBurst: 2
   buffedBulletLifetime: 20
-  buffedBulletBounces: 10
+  buffedBulletBounces: 12
   buffedSpeed: 500
   buffedRotation: 8
   buffedTurretRotation: 10

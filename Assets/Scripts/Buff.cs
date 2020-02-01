@@ -20,6 +20,8 @@ public class Buff : NetworkBehaviour
 
     GameObject buffedPlayer;
 
+    public FXbuffOnPlayer FXscript;
+
     public int m_buffCD;
     public int m_buffDuration;
 
@@ -76,6 +78,7 @@ public class Buff : NetworkBehaviour
 
     void BuffPlayer()
     {
+        StartCoroutine("PlayerBuffEffect");
         CmdBuffPicker();
         PlayerBuffEffect();
     }
@@ -84,46 +87,13 @@ public class Buff : NetworkBehaviour
     {
         GameObject buffEffect = Instantiate(m_buff, buffedPlayer.transform.position, buffedPlayer.transform.rotation) as GameObject;
         buffEffect.transform.parent = buffedPlayer.transform;
+        Vector3 temp = new Vector3(0, 0.5f, 0);
+        buffEffect.transform.position += temp;
+        FXscript = buffEffect.GetComponent<FXbuffOnPlayer>();
+
         Destroy(buffEffect, m_buffDuration);
     }
 
-    // void BuffPicker()
-    // {
-    //     int actions = Random.Range(0, 5);
-    //     Debug.Log(actions);
-    //     switch (actions)
-    //     {
-    //         case 0:
-    //             StartCoroutine(m_pShoot.BuffBullet());
-    //             Debug.Log("buff bullet");
-    //             break;
-
-    //         case 1:
-    //             StartCoroutine(m_pHealth.Regen());
-    //             Debug.Log("buff regen");
-    //             break;
-
-    //         case 2:
-    //             StartCoroutine(m_pShoot.BuffBulletLife());
-    //             Debug.Log("buff bullet life");
-    //             break;
-
-    //         case 3:
-    //             StartCoroutine(m_pShoot.BuffBurst());
-    //             Debug.Log("buff burst");
-    //             break;
-
-    //         case 4:
-    //             StartCoroutine(m_pMotor.BuffSpeed());
-    //             Debug.Log("buff speed");
-    //             break;
-
-    //         default:
-    //             Debug.Log("DEFAULT");
-    //             break;
-
-    //     }
-    // }
 
     [Command]
     void CmdBuffPicker()
@@ -163,6 +133,8 @@ public class Buff : NetworkBehaviour
     IEnumerator BuffRegen()
     {
         Debug.Log("buff regen");
+        FXscript.SetRegenC();
+
         yield return new WaitForSeconds(2f);
         m_pHealth.m_currentHealth += 1;
         yield return new WaitForSeconds(3f);
@@ -174,6 +146,7 @@ public class Buff : NetworkBehaviour
     IEnumerator BuffBulletLife()
     {
         Debug.Log("buff bullet life");
+        FXscript.SetBulletLifeC();
 
         var tempBounce = m_pShoot.m_bBounces;
         var tempLifetime = m_pShoot.m_bLifetime;
@@ -190,6 +163,7 @@ public class Buff : NetworkBehaviour
     IEnumerator BuffBurst()
     {
         Debug.Log("buff burst");
+        FXscript.SetBurstC();
 
         var tempBurst = m_pShoot.m_shotsPerBurst;
         m_pShoot.m_shotsPerBurst = buffedShotsPerBurst;
@@ -200,6 +174,7 @@ public class Buff : NetworkBehaviour
     IEnumerator BuffSpeed()
     {
         Debug.Log("buff speed");
+        FXscript.SetSpeedC();
 
         var tempSpeed = m_pMotor.m_moveSpeed;
         var tempTurret = m_pMotor.m_turretRotateSpeed;
@@ -219,6 +194,8 @@ public class Buff : NetworkBehaviour
     IEnumerator BuffBullet()
     {
         Debug.Log("buff bullet");
+        FXscript.SetBSpeedC();
+
         var tempBSpeed = m_pShoot.m_bSpeed;
         m_pShoot.m_bSpeed = buffedBulletSpeed;
         yield return new WaitForSeconds(m_buffDuration);
