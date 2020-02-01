@@ -104,11 +104,17 @@ public class PlayerShoot : NetworkBehaviour
 
         if (rbody != null)
         {
-            sound.PlayOneShot(cannon, shootVol);
+            RpcShootSound();
             rbody.velocity = m_bSpeed * m_bulletSpawn.transform.forward;
             bullet.m_owner = GetComponent<PlayerManager>();
             NetworkServer.Spawn(rbody.gameObject);
         }
+    }
+
+    [ClientRpc]
+    void RpcShootSound()
+    {
+        sound.PlayOneShot(cannon, shootVol);
     }
 
     IEnumerator Reload()

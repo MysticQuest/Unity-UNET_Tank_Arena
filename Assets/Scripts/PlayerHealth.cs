@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.Networking;
 using UnityEngine;
+using System.Linq;
 using UnityEngine.UI;
 
 public class PlayerHealth : NetworkBehaviour
@@ -28,11 +29,35 @@ public class PlayerHealth : NetworkBehaviour
     public float hitVol;
     public float deathVol;
 
+    public List<AudioListener> listeners = new List<AudioListener>();
+    public AudioListener listener;
+
     // Use this for initialization
     void Start()
     {
         sound = GetComponent<AudioSource>();
         Reset();
+
+        //     listener = GetComponent<AudioListener>();
+        //     listeners = FindObjectsOfType<AudioListener>().ToList();
+        //     // if (!isServer)
+        //     // {
+        //     //     for (int i = 0; i < listeners.Count; i++)
+        //     //     {
+        //     // if (listeners[i].gameObject.GetInstanceID() == this.gameObject.GetInstanceID())
+
+        //     if (GetComponent<NetworkView>().isMine)
+        //     {
+        //         Debug.Log("This is my listener!");
+        //         listener.enabled = true;
+        //     }
+        //     else
+        //     {
+        //         Debug.Log("Listener Disabled!");
+        //         listener.enabled = false;
+        //         //     }
+        //         // }
+        //     }
     }
 
     // Update is called once per frame
@@ -60,8 +85,7 @@ public class PlayerHealth : NetworkBehaviour
             m_lastAttacker = pc;
         }
 
-        sound.PlayOneShot(boom, hitVol);
-
+        RpcDamageSound();
         m_currentHealth -= damage;
 
         if (m_currentHealth <= 0 && !m_isDead)
@@ -75,6 +99,12 @@ public class PlayerHealth : NetworkBehaviour
             m_isDead = true;
             RpcDie();
         }
+    }
+
+    [ClientRpc]
+    void RpcDamageSound()
+    {
+        sound.PlayOneShot(boom, hitVol);
     }
 
     [ClientRpc]
