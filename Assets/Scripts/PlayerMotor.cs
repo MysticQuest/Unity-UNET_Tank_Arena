@@ -13,8 +13,11 @@ public class PlayerMotor : NetworkBehaviour
     public GameObject buffObj;
     public Buff buff;
 
+    [SyncVar]
     public float m_moveSpeed = 100f;
+    [SyncVar]
     public float m_chassisRotateSpeed = 1f;
+    [SyncVar]
     public float m_turretRotateSpeed = 3f;
 
     bool m_canMove = false;

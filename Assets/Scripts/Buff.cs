@@ -42,7 +42,6 @@ public class Buff : NetworkBehaviour
         m_collider.enabled = false;
         m_buffFX.Stop();
 
-
         StartCoroutine("EnableBuff");
     }
 
@@ -135,27 +134,22 @@ public class Buff : NetworkBehaviour
         {
             case 0:
                 StartCoroutine("BuffBullet");
-                Debug.Log("buff bullet");
                 break;
 
             case 1:
                 StartCoroutine("BuffRegen");
-                Debug.Log("buff regen");
                 break;
 
             case 2:
                 StartCoroutine("BuffBulletLife");
-                Debug.Log("buff bullet life");
                 break;
 
             case 3:
                 StartCoroutine("BuffBurst");
-                Debug.Log("buff burst");
                 break;
 
             case 4:
                 StartCoroutine("BuffSpeed");
-                Debug.Log("buff speed");
                 break;
 
             default:
@@ -165,8 +159,10 @@ public class Buff : NetworkBehaviour
         }
     }
 
+
     IEnumerator BuffRegen()
     {
+        Debug.Log("buff regen");
         yield return new WaitForSeconds(1f);
         m_pHealth.m_currentHealth += 1;
         yield return new WaitForSeconds(2f);
@@ -177,6 +173,7 @@ public class Buff : NetworkBehaviour
 
     IEnumerator BuffBulletLife()
     {
+        Debug.Log("buff bullet life");
 
         var tempBounce = m_pShoot.m_bBounces;
         var tempLifetime = m_pShoot.m_bLifetime;
@@ -192,6 +189,7 @@ public class Buff : NetworkBehaviour
 
     IEnumerator BuffBurst()
     {
+        Debug.Log("buff burst");
 
         var tempBurst = m_pShoot.m_shotsPerBurst;
         m_pShoot.m_shotsPerBurst = buffedShotsPerBurst;
@@ -201,7 +199,7 @@ public class Buff : NetworkBehaviour
 
     IEnumerator BuffSpeed()
     {
-
+        Debug.Log("buff speed");
 
         var tempSpeed = m_pMotor.m_moveSpeed;
         var tempTurret = m_pMotor.m_turretRotateSpeed;
@@ -220,7 +218,7 @@ public class Buff : NetworkBehaviour
 
     IEnumerator BuffBullet()
     {
-
+        Debug.Log("buff bullet");
         var tempBSpeed = m_pShoot.m_bSpeed;
         m_pShoot.m_bSpeed = buffedBulletSpeed;
         yield return new WaitForSeconds(m_buffDuration);

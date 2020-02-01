@@ -18,5 +18,4 @@ public class Utility : MonoBehaviour
         }
         return Vector3.zero;
     }
-
 }

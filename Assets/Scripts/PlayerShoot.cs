@@ -12,13 +12,17 @@ public class PlayerShoot : NetworkBehaviour
     public GameObject buffObj;
     public Buff buff;
 
+    [SyncVar]
     public int m_shotsPerBurst = 1;
     int m_shotsLeft;
     bool m_isReloading;
     public float m_reloadTime = 2f;
 
+    [SyncVar]
     public int m_bSpeed = 15;
+    [SyncVar]
     public int m_bBounces = 3;
+    [SyncVar]
     public float m_bLifetime = 5;
 
     public ParticleSystem m_missFireEffect;
