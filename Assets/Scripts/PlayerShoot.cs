@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class PlayerShoot : NetworkBehaviour
@@ -39,6 +40,8 @@ public class PlayerShoot : NetworkBehaviour
 
     public float shootVol;
 
+    public Image CD;
+
     // Use this for initialization
     void Start()
     {
@@ -51,6 +54,17 @@ public class PlayerShoot : NetworkBehaviour
 
         hotSpot = new Vector2(cursorTexture.width / 1.3f, cursorTexture.height / 1.3f);
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+
+        CD = GameObject.FindGameObjectWithTag("CD").GetComponent<Image>();
+        CD.fillAmount = 0;
+    }
+
+    void Update()
+    {
+        if (m_isReloading)
+        {
+            CD.fillAmount += 1f / m_reloadTime * Time.deltaTime;
+        }
     }
 
     public void Enable()
@@ -92,6 +106,7 @@ public class PlayerShoot : NetworkBehaviour
             m_shotsLeft--;
             if (m_shotsLeft <= 0)
             {
+
                 StartCoroutine("Reload");
             }
         }
@@ -126,6 +141,7 @@ public class PlayerShoot : NetworkBehaviour
         m_shotsLeft = m_shotsPerBurst;
         m_isReloading = true;
         yield return new WaitForSeconds(m_reloadTime);
+        CD.fillAmount = 0;
         m_isReloading = false;
     }
 

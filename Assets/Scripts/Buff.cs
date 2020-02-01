@@ -76,7 +76,7 @@ public class Buff : NetworkBehaviour
 
     void BuffPlayer()
     {
-        BuffPicker();
+        CmdBuffPicker();
         PlayerBuffEffect();
     }
 
@@ -125,8 +125,8 @@ public class Buff : NetworkBehaviour
     //     }
     // }
 
-
-    void BuffPicker()
+    [Command]
+    void CmdBuffPicker()
     {
         int actions = Random.Range(0, 5);
         Debug.Log(actions);
@@ -163,11 +163,11 @@ public class Buff : NetworkBehaviour
     IEnumerator BuffRegen()
     {
         Debug.Log("buff regen");
-        yield return new WaitForSeconds(1f);
-        m_pHealth.m_currentHealth += 1;
         yield return new WaitForSeconds(2f);
         m_pHealth.m_currentHealth += 1;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
+        m_pHealth.m_currentHealth += 1;
+        yield return new WaitForSeconds(3f);
         m_pHealth.m_currentHealth += 1;
     }
 
@@ -224,6 +224,4 @@ public class Buff : NetworkBehaviour
         yield return new WaitForSeconds(m_buffDuration);
         m_pShoot.m_bSpeed = tempBSpeed;
     }
-
-
 }

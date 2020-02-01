@@ -246,6 +246,7 @@ public class GameManager : NetworkBehaviour
 
     PlayerManager GetWinner()
     {
+        m_maxScore = m_allPlayers.Count * 2 - 1;
         for (int i = 0; i < m_allPlayers.Count; i++)
         {
             if (m_allPlayers[i].m_score >= m_maxScore)

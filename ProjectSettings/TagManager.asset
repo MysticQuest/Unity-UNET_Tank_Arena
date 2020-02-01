@@ -6,6 +6,7 @@ TagManager:
   tags:
   - bounce
   - Buff
+  - CD
   layers:
   - Default
   - TransparentFX
