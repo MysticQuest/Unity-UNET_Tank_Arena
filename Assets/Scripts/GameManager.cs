@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using Prototype.NetworkLobby;
+using System.Linq;
 
 public class GameManager : NetworkBehaviour
 {
@@ -27,6 +28,9 @@ public class GameManager : NetworkBehaviour
     [SyncVar]
     bool m_gameOver = false;
     PlayerManager m_winner;
+
+    public List<GameObject> players = new List<GameObject>();
+    public List<AudioListener> listeners = new List<AudioListener>();
 
     public static GameManager Instance
     {
@@ -64,7 +68,14 @@ public class GameManager : NetworkBehaviour
     [Server]
     void Start()
     {
+        RpcDisableListeners();
         StartCoroutine("GameLoop");
+    }
+
+    void RpcDisableListeners()
+    {
+        listeners = FindObjectsOfType<AudioListener>().ToList();
+        // ???
     }
 
     IEnumerator GameLoop()

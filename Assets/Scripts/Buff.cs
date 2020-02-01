@@ -66,8 +66,6 @@ public class Buff : NetworkBehaviour
             m_pShoot = buffedPlayer.GetComponent<PlayerShoot>();
             m_pMotor = buffedPlayer.GetComponent<PlayerMotor>();
 
-            Debug.Log("Collided at Buff");
-
             m_collider.enabled = false;
             m_buffFX.Stop();
 
@@ -99,7 +97,6 @@ public class Buff : NetworkBehaviour
     void CmdBuffPicker()
     {
         int actions = Random.Range(0, 5);
-        Debug.Log(actions);
         switch (actions)
         {
             case 0:
